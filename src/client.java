@@ -9,6 +9,12 @@ public class client {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+            while(true){
+                out.println("cats");
+                System.out.println(in.readLine());
+
+            }
+
         } catch (IOException io){
             System.out.println(io.getMessage());
         }

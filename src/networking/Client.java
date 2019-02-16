@@ -2,7 +2,16 @@ package networking;
 
 import java.net.*;
 import java.io.*;
-public class client {
+
+public class Client {
+    private String username;
+    private String password;
+
+    public Client(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
     public static void main(String[] args) {
         String host = "10.0.0.118";
         int port = 35002;

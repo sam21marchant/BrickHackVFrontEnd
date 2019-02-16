@@ -7,9 +7,14 @@ public class Client {
     private String username;
     private String password;
 
+
+    /*
+     * Instantiates a Client Object with a user name and password. This will data will be sent to the server to process.
+     */
     public Client(String username, String password){
         this.username = username;
         this.password = password;
+        System.out.println("Username: " + username + "\nPassword: " + password);
     }
 
     public static void main(String[] args) {

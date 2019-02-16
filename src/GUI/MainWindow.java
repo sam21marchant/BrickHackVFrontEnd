@@ -1,19 +1,21 @@
 package GUI;
 
-import sun.applet.Main;
 
+import EventHandlers.LoginHandler;
+import networking.Client;
 import javax.swing.*;
-
-
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 
 public class MainWindow {
     private JFrame mainFrame;
     private JPanel mainPanel;
-    private String userID;
-    private String passWord;
+    private Client conn;
 
+    /*
+     * Construct the window that prompts the user to enter their login credentials
+     */
     public MainWindow(){
 
         mainFrame = new JFrame();
@@ -27,7 +29,9 @@ public class MainWindow {
         JLabel usernameLabel = new JLabel("Username");
         JTextField username = new JTextField(30);
         JLabel passwordLabel = new JLabel("Password");
-        JTextField password = new JTextField(30);
+        JPasswordField password = new JPasswordField(30);
+        password.setEchoChar('*');
+
 
         loginPanel.add(usernameLabel);
         loginPanel.add(username);
@@ -36,6 +40,11 @@ public class MainWindow {
 
 
         JButton submit = new JButton("Submit");
+        ActionListener loginHandler = new LoginHandler(submit, this);
+        submit.addActionListener(loginHandler);
+
+        loginPanel.add(submit);
+
 
         mainPanel.add(loginPanel);
 
@@ -46,12 +55,10 @@ public class MainWindow {
     }
 
     /*
-     * When the user submits their username and password capture it in the
-     * instance variables
+     * When the user submits their username and password the conn instance variable will be ins
      */
-    public void setUserIDAndPassWord(String userID, String passWord){
-        this.userID = userID;
-        this.passWord = passWord;
+    public void setupClient(String username, String password){
+        conn = new Client(username, password);
     }
 
     public static void main(String[] args) {

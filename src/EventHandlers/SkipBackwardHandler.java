@@ -7,20 +7,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-public class PlayButtonHandler implements ActionListener {
+public class SkipBackwardHandler implements ActionListener {
     MainWindow window;
     JButton button;
     Client client;
 
-
-    public PlayButtonHandler(MainWindow window, JButton button){
+    public SkipBackwardHandler(MainWindow window, JButton button){
         this.window = window;
         this.button = button;
         client = window.getClient();
     }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         String option = button.getText();
         if (option == "Pause"){

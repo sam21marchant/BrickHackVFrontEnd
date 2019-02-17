@@ -85,7 +85,16 @@ public class MainWindow {
         JButton playPause = new JButton("Play");
         playPause.addActionListener(new PlayButtonHandler(this, playPause));
 
+        JButton skip = new JButton("Skip");
+        skip.addActionListener(new PlayButtonHandler(this, skip));
+
+        JButton replay = new JButton("Replay");
+        replay.addActionListener(new PlayButtonHandler(this, replay));
+
+        controlPanel.add(replay);
         controlPanel.add(playPause);
+        controlPanel.add(skip);
+
         mainPanel.add(controlPanel);
     }
 

@@ -83,6 +83,21 @@ public class Client {
 
         out.println(obj.toString());
     }
+    public void skipsong(){
+        HashMap<String, String> map = new HashMap<>();
+        JSONObject obj;
+        map.put("action","skip");
+        obj = new JSONObject(map);
+
+    }
+
+    public void replaysong(){
+        HashMap<String, String> map = new HashMap<>();
+        JSONObject obj;
+        map.put("action","replay");
+        obj = new JSONObject(map);
+
+    }
 
 
 

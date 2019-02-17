@@ -3,6 +3,8 @@ package GUI;
 
 import EventHandlers.LoginHandler;
 import EventHandlers.PlayButtonHandler;
+import EventHandlers.SkipBackwardHandler;
+import EventHandlers.SkipForwardHandler;
 import networking.Client;
 import javax.swing.*;
 import java.awt.*;
@@ -86,10 +88,10 @@ public class MainWindow {
         playPause.addActionListener(new PlayButtonHandler(this, playPause));
 
         JButton skip = new JButton("Skip");
-        skip.addActionListener(new PlayButtonHandler(this, skip));
+        skip.addActionListener(new SkipForwardHandler(this, skip));
 
         JButton replay = new JButton("Replay");
-        replay.addActionListener(new PlayButtonHandler(this, replay));
+        replay.addActionListener(new SkipBackwardHandler(this, replay));
 
         controlPanel.add(replay);
         controlPanel.add(playPause);

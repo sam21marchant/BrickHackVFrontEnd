@@ -18,13 +18,6 @@ public class SkipForwardHandler implements ActionListener {
         client = window.getClient();
     }
     public void actionPerformed(ActionEvent e) {
-        String option = button.getText();
-        if (option == "Pause"){
-            button.setText("Play");
-            client.playPause(false);
-        } else {
-            button.setText("Pause");
-            client.playPause(true);
-        }
+        client.skipsong();
     }
 }

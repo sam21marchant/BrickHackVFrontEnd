@@ -88,6 +88,7 @@ public class Client {
         JSONObject obj;
         map.put("action","skip");
         obj = new JSONObject(map);
+        out.println(obj.toString());
 
     }
 
@@ -96,6 +97,7 @@ public class Client {
         JSONObject obj;
         map.put("action","replay");
         obj = new JSONObject(map);
+        out.println(obj.toString());
 
     }
 

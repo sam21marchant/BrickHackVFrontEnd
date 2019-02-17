@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import org.json.*;
 
+import javax.swing.*;
+
 public class Client {
     private String username;
     private String password;
@@ -43,16 +45,25 @@ public class Client {
         JSONObject obj = new JSONObject(map);
 
         out.println(obj.toString());
-        try {
-            System.out.println(in.readLine());
-            String loginResponse = in.readLine();
-            JSONObject loginObject = new JSONObject(loginResponse);
-            return loginObject.getBoolean("isPartyLeader");
-        } catch (IOException e) {
-            e.printStackTrace();
+        boolean successful = false;
+        boolean retVal = false;
+        while(!successful) {
+            try {
+                System.out.println(in.readLine());
+                String loginResponse = in.readLine();
+                JSONObject loginObject = new JSONObject(loginResponse);
+                successful = loginObject.getBoolean("successful");
+                if (!successful){
+                    String message = loginObject.getString("message");
+                    JOptionPane.showMessageDialog(null, message);
+                }
+                retVal = loginObject.getBoolean("isPartyLeader");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        return false;
+        return retVal;
     }
     public static void main(String[] args) {
         String host = "10.0.0.118";

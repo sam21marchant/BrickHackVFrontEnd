@@ -32,6 +32,7 @@ public class Client {
     }
 
 
+
     /*
      * Send login information to the server
      * The server will tell the user if they are the
@@ -65,6 +66,26 @@ public class Client {
 
         return retVal;
     }
+
+
+
+    public void playPause(boolean play){
+        HashMap<String, String> map = new HashMap<>();
+        JSONObject obj;
+
+        if(play){
+            map.put("action", "play");
+            obj = new JSONObject(map);
+        } else{
+            map.put("action", "pause");
+            obj = new JSONObject(map);
+        }
+
+        out.println(obj.toString());
+    }
+
+
+
     public static void main(String[] args) {
         String host = "10.0.0.118";
         int port = 35002;

@@ -2,6 +2,7 @@ package GUI;
 
 
 import EventHandlers.LoginHandler;
+import EventHandlers.PlayButtonHandler;
 import networking.Client;
 import javax.swing.*;
 import java.awt.*;
@@ -66,15 +67,37 @@ public class MainWindow {
         mainPanel.remove(0);
         mainPanel.updateUI();
         if(isPartyLeader){
-            mainPanel.add(new JLabel("YOU ARE THE HOST"));
+            setUpHostUI();
         } else{
             mainPanel.add(new JLabel("YOU ARE NOT THE HOST"));
         }
         mainPanel.updateUI();
     }
 
+
+    /*
+     * Set up the hosts UI so that they will se the controls available to them such as play, pause, next, prev, etc.
+     */
+    private void setUpHostUI(){
+        JPanel controlPanel = new JPanel();
+        controlPanel.setSize(new Dimension(500, 500));
+
+        JButton playPause = new JButton("Play");
+        playPause.addActionListener(new PlayButtonHandler(this, playPause));
+
+        controlPanel.add(playPause);
+        mainPanel.add(controlPanel);
+    }
+
+
+
+
     public static void main(String[] args) {
         MainWindow w = new MainWindow();
     }
 
+
+    public Client getClient() {
+        return conn;
+    }
 }

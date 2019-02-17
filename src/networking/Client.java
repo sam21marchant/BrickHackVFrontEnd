@@ -6,6 +6,9 @@ import java.io.*;
 public class Client {
     private String username;
     private String password;
+    private PrintWriter out;
+    private BufferedReader in;
+    private Socket socket;
 
 
     /*
@@ -15,8 +18,23 @@ public class Client {
         this.username = username;
         this.password = password;
         System.out.println("Username: " + username + "\nPassword: " + password);
+        try {
+            socket = new Socket("10.0.0.118", 35002);
+            out = new PrintWriter(socket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public boolean sendLogin() {
+        out.println("{username:"+username+", password:"+password+"}");
+
+
+
+
+        return false;
+    }
     public static void main(String[] args) {
         String host = "10.0.0.118";
         int port = 35002;

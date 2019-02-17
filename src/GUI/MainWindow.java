@@ -60,6 +60,7 @@ public class MainWindow {
      */
     public void setupClient(String username, String password){
         conn = new Client(username, password);
+        conn.sendLogin();
     }
 
     public static void main(String[] args) {

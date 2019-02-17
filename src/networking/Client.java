@@ -1,6 +1,9 @@
 package networking;
 import java.net.*;
 import java.io.*;
+import java.util.HashMap;
+
+import org.json.*;
 
 public class Client {
     private String username;
@@ -27,9 +30,13 @@ public class Client {
     }
 
     public boolean sendLogin() {
-        out.println("{username:"+username+", password:"+password+"}");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("username", username);
+        map.put("password", password);
 
+        JSONObject obj = new JSONObject(map);
 
+        out.println(obj.toString());
 
 
         return false;

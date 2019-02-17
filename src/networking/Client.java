@@ -29,16 +29,25 @@ public class Client {
         }
     }
 
+
+    /*
+     * Send login information to the server
+     * The server will tell the user if they are the
+     */
     public boolean sendLogin() {
         HashMap<String, String> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
+        map.put("action", "login");
 
         JSONObject obj = new JSONObject(map);
 
         out.println(obj.toString());
         try {
             System.out.println(in.readLine());
+            String loginResponse = in.readLine();
+            JSONObject loginObject = new JSONObject(loginResponse);
+            return loginObject.getBoolean("isPartyLeader");
         } catch (IOException e) {
             e.printStackTrace();
         }

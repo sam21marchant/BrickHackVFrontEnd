@@ -12,11 +12,13 @@ public class MainWindow {
     private JFrame mainFrame;
     private JPanel mainPanel;
     private Client conn;
+    private boolean isPartyLeader;
 
     /*
      * Construct the window that prompts the user to enter their login credentials
      */
     public MainWindow(){
+        isPartyLeader = false;
 
         mainFrame = new JFrame();
         mainPanel = new JPanel();
@@ -60,7 +62,15 @@ public class MainWindow {
      */
     public void setupClient(String username, String password){
         conn = new Client(username, password);
-        conn.sendLogin();
+        isPartyLeader = conn.sendLogin();
+        mainPanel.remove(0);
+        mainPanel.updateUI();
+        if(isPartyLeader){
+            mainPanel.add(new JLabel("YOU ARE THE HOST"));
+        } else{
+            mainPanel.add(new JLabel("YOU ARE NOT THE HOST"));
+        }
+        mainPanel.updateUI();
     }
 
     public static void main(String[] args) {

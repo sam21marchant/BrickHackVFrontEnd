@@ -37,7 +37,11 @@ public class Client {
         JSONObject obj = new JSONObject(map);
 
         out.println(obj.toString());
-
+        try {
+            System.out.println(in.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return false;
     }
